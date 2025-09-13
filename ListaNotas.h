@@ -8,10 +8,11 @@ class NodoNota {
 
         NodoNota(double n) : nota(n), siguiente(nullptr) {}
 };
+
 class ListaNotas {
     private:
         NodoNota* cabeza;
-        int tamaño;
+        int tamano;
     public:
         ListaNotas();
         ~ListaNotas();
@@ -20,7 +21,7 @@ class ListaNotas {
         double calcularPromedio() const;
         void mostrar() const;
         bool estaVacia() const;
-        int getTamaño() const;
-
+        int getTamano() const;
 };
+
 #endif

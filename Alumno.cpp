@@ -1,18 +1,21 @@
 #include "Alumno.h"
 #include <iostream>
 
-
 Alumno::Alumno(int i, const std::string& n, const std::string& c, const std::string& g){
-    id = i;
+    codigo = i;
     nombre = n;
     carrera = c;
     gmail = g;
 }
 
-int Alumno::getId() const {
-    return id;
-
+int Alumno::getCodigo() const {
+    return codigo;
 }
+
+int Alumno::getId() const {
+    return codigo;
+}
+
 std::string Alumno::getNombre() const {
     return nombre;
 }
@@ -25,14 +28,16 @@ std::string Alumno::getGmail() const {
     return gmail;
 }
 
-void Alumno::setId(int i){
-    id = i;
+void Alumno::setCodigo(int i){
+    codigo = i;
+}
 
+void Alumno::setId(int i){
+    codigo = i;
 }
 
 void Alumno::setNombre(const std::string& n){
     nombre = n;
-
 }
 
 void Alumno::setCarrera(const std::string& c){
@@ -44,10 +49,9 @@ void Alumno::setGmail(const std::string& g){
 }
 
 void Alumno::mostrar() const{
-    std::cout << "ID: " << id << ", Nombre: " << nombre << ", Carrera: " << carrera << ", Gmail:" <<  std::endl;
-
+    std::cout << "ID: " << codigo << ", Nombre: " << nombre << ", Carrera: " << carrera << ", Gmail:" <<  gmail << std::endl;
 }
 
 bool Alumno::operator==(const Alumno& other) const {
-    return id == other.id;
+    return codigo == other.codigo;
 }

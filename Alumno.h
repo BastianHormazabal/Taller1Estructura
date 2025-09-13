@@ -5,19 +5,23 @@
 
 class Alumno {
     private:
-        int id; 
+        int codigo; 
         std::string nombre;
         std::string carrera;
         std::string gmail;
     public:
         Alumno(int i, const  std::string& n, const  std::string& c,const  std::string& g);
 
+        int getCodigo() const;
         int getId() const;
+
         std::string getNombre() const;
         std::string getCarrera() const;
         std::string getGmail() const;
 
+        void setCodigo(int i);
         void setId(int i);
+
         void setNombre(const std::string& n);
         void setCarrera(const std::string& c);
         void setGmail(const std::string& g);

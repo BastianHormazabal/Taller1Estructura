@@ -1,4 +1,6 @@
 # Taller1Estructura
 Alumno: Bastian hormazabal
-Instrucciones: se debe abrir la terminal "ctrl + ñ" y compilar todo junto con "g++ -o programa main.cpp Alumno.cpp Curso.cpp Sistema.cpp"
-luego ejecutar el codigo con ".\programa"
+paralelo c2
+Instrucciones: se debe abrir la terminal "ctrl + ñ" y compilar todo junto con "g++ -std=c++17 Alumno.cpp Curso.cpp Inscripcion.cpp ListaNotas.cpp Programa.cpp Sistema.cpp -o programa.exe
+"
+luego ejecutar el codigo con ".\programa.exe" (tambien deberia poderse sin el exe pero a veces me tiraba error)

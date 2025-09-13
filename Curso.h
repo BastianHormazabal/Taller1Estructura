@@ -5,20 +5,24 @@
 
 class Curso {
     private:
-        int codigo;
+        int id;
         std::string nombre;
         int creditos;
         std::string profesor;
 
     public:
-        Curso(int c, const std::string& n, int cr,  const std::string& p);
+        Curso(int i, const std::string& n, int cr,  const std::string& p);
 
+        int getId() const;
         int getCodigo() const;
+
         std::string getNombre() const;
         int getCreditos() const;
         std::string getProfesor() const;
         
-        void setCodigo(int c);
+        void setId(int i);
+        void setCodigo(int i);
+
         void setNombre(const std::string& n);
         void setCreditos(int cr);
         void setProfesor(const std::string& p);

@@ -1,21 +1,21 @@
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 #include <iostream>
+#include <string>
 
 template <typename T>
 
 class Nodo {
     public:
-        T* dato; //puntero a un objeto
-        Nodo* siguiente; //puntero al siguiente
+        T* dato;
+        Nodo* siguiente;
         Nodo(T* d) : dato(d), siguiente(nullptr){}
-
 };  
 
 template <typename T>
 class LinkedList {
     private:
-        Nodo<T>* cabeza; //es un puntero al primer nodo
+        Nodo<T>* cabeza;
 
     public: 
         LinkedList() : cabeza(nullptr) {}
@@ -34,11 +34,10 @@ class LinkedList {
             cabeza = nuevo;
         }
 
-
         void mostrar() const{
             Nodo<T>* actual = cabeza;
             while (actual){
-                actual->dato->mostrar(); //aqui llamo al mostra de alumno o curso
+                actual->dato->mostrar();
                 actual = actual->siguiente;
             }
         }
@@ -46,18 +45,8 @@ class LinkedList {
         T* buscarPorId(int id) const{
             Nodo<T>* actual = cabeza;
             while (actual){
-                try{
-                    if (actual->dato->getId() == id){
-                        return actual->dato;
-                    }
-                }
-                catch(...){ //si falla intentamos con codigo
-                    try{
-                        if (actual->dato->getCodigo() == id){
-                            return actual->dato;
-                        }
-                    }
-                    catch(...){}
+                if (actual->dato->getId() == id || actual->dato->getCodigo() == id){
+                    return actual->dato;
                 }
                 actual = actual->siguiente;
             }
@@ -79,59 +68,40 @@ class LinkedList {
         bool eliminarPorId(int id){
             if (!cabeza) return false;
 
-            bool esElPrimero = false;
-            try {
-                if (cabeza->dato->getId() == id) esElPrimero = true;
-            } catch (...){
-                try {
-                    if (cabeza->dato->getCodigo() == id) esElPrimero = true;
+            auto coincide = [&](T* obj){
+                return obj->getId() == id || obj->getCodigo() == id;
+            };
 
-                } catch (...){}
-
-            }
-
-            if (esElPrimero){
+            if (coincide(cabeza->dato)){
                 Nodo<T>* temp = cabeza;
                 cabeza = cabeza->siguiente;
                 delete temp->dato;
                 delete temp;
                 return true;
-
             }
 
             Nodo<T>* actual = cabeza;
             while(actual->siguiente){
-                bool encontrado = false;
-                try{
-                    if(actual->siguiente->dato->getId() == id) encontrado = true;
-                } catch (...){
-                    try{
-                        if(actual->siguiente->dato->getCodigo() == id) encontrado = true;
-                    } catch (...){}
-                 }
-                 if (encontrado){
+                if (coincide(actual->siguiente->dato)){
                     Nodo<T>* temp = actual->siguiente;
                     actual->siguiente = temp->siguiente;
                     delete temp->dato;
                     delete temp;
                     return true;
-                 }
-                 actual = actual->siguiente;
-
+                }
+                actual = actual->siguiente;
             }
             return false;
         }
 
         template <typename predicado>
         void eliminarSi(predicado pred) {
-            //elimina del inicio
             while (cabeza && pred(*cabeza->dato)){
                 Nodo<T>* temp = cabeza;
                 cabeza = cabeza->siguiente;
                 delete temp->dato;
                 delete temp;
             }
-            //elimina en el resto de la lista
             Nodo<T>* actual = cabeza;
             while (actual && actual->siguiente){
                 if (pred(*actual->siguiente->dato)){
@@ -143,7 +113,6 @@ class LinkedList {
                     actual = actual->siguiente;
                 }
             }
-
         }
 
         void obtenerTodos(T** elementos, int& cantidad, int maxElementos) const{
@@ -169,8 +138,5 @@ class LinkedList {
             }
             return contador;
         }
-
-
-
 };
 #endif

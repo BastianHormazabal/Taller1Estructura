@@ -4,7 +4,7 @@
 
 ListaNotas::ListaNotas() {
     cabeza = nullptr;
-    tamaño = 0;
+    tamano = 0;
 }
 
 ListaNotas::~ListaNotas(){
@@ -12,7 +12,6 @@ ListaNotas::~ListaNotas(){
         NodoNota* temp = cabeza;
         cabeza = cabeza->siguiente;
         delete temp;
-
     }
 }
 
@@ -21,24 +20,22 @@ void ListaNotas::agregar(double nota){
         NodoNota* nuevo = new NodoNota(nota);
         nuevo->siguiente = cabeza;
         cabeza = nuevo;
-        tamaño++;
-
+        tamano++;
     } else {
         std::cout << "Nota invalida. Debe estar entre 1.0 y 7.0" << std::endl;
     }
 }
+
 double ListaNotas::calcularPromedio() const{
-    if (tamaño == 0) return 0.0;
+    if (tamano == 0) return 0.0;
 
     double suma = 0.0;
     NodoNota* actual = cabeza;
-    while(actual)
-    {
-    suma += actual->nota;
-    actual = actual->siguiente;
-
+    while(actual) {
+        suma += actual->nota;
+        actual = actual->siguiente;
     }
-    return suma / tamaño;
+    return suma / tamano;
 }
 
 void ListaNotas::mostrar() const{
@@ -48,16 +45,16 @@ void ListaNotas::mostrar() const{
         std::cout << std::fixed << std::setprecision(1) << actual->nota << " ";
         actual = actual->siguiente;
     }
-    if (tamaño > 0){
+    if (tamano > 0){
         std::cout << "Promedio: " << std::fixed << std::setprecision(2) << calcularPromedio();
     }
     std::cout << std::endl;
-
 }
 
 bool ListaNotas::estaVacia() const{
-    return tamaño == 0;
+    return tamano == 0;
 }
-int ListaNotas::getTamaño() const{
-    return tamaño;
+
+int ListaNotas::getTamano() const{
+    return tamano;
 }
