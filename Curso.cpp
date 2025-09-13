@@ -1,14 +1,16 @@
 #include "Curso.h"
 #include <iostream>
 
-Curso::Curso(int i, const std::string&n){
-    id = i;
+Curso::Curso(int c, const std::string&n, int cr, const std::string& p){
+    codigo = c;
     nombre = n;
+    creditos = cr;
+    profesor = p;
 
 }
 
-int Curso::getId() const{
-    return id;
+int Curso::getCodigo() const{
+    return codigo;
 
 }
 
@@ -17,8 +19,18 @@ std::string Curso::getNombre() const{
 
 }
 
-void Curso::setId(int i){
-    id = i;
+int Curso::getCreditos() const{
+    return creditos;
+
+}
+
+std::string Curso::getProfesor() const{
+    return profesor;
+
+}
+
+void Curso::setCodigo(int c){
+    codigo = c;
 
 }
 
@@ -27,9 +39,19 @@ void Curso::setNombre(const std::string& n){
 
 }
 
+void Curso::setCreditos(int cr){
+    creditos = cr;
+}
+void Curso::setProfesor(const std::string& p){
+    profesor = p;
+}
+
 void Curso::mostrar() const{
-    std::cout << "ID: " << id << ", Nombre: " << nombre << std::endl;
+    std::cout << "Codigo: " << codigo << ", Nombre: " << nombre << ", Creditos: " << creditos << ", Profesor: " << profesor << std::endl;
     
+}
+bool Curso::operator==(const Curso& other) const {
+    return codigo == other.codigo;
 }
 
 
